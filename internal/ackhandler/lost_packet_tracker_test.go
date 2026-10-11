@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go/internal/monotime"
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/monotime"
+	"github.com/qoke/mp-quic-go/internal/protocol"
 
 	"github.com/stretchr/testify/require"
 )

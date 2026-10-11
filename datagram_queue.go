@@ -4,9 +4,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/AeonDave/mp-quic-go/internal/utils"
-	"github.com/AeonDave/mp-quic-go/internal/utils/ringbuffer"
-	"github.com/AeonDave/mp-quic-go/internal/wire"
+	"github.com/qoke/mp-quic-go/internal/utils"
+	"github.com/qoke/mp-quic-go/internal/utils/ringbuffer"
+	"github.com/qoke/mp-quic-go/internal/wire"
 )
 
 const (

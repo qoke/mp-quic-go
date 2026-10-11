@@ -9,7 +9,7 @@ import (
 
 	"golang.org/x/crypto/chacha20"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/protocol"
 )
 
 type headerProtector interface {
@@ -110,7 +110,7 @@ func (p *chachaHeaderProtector) apply(sample []byte, firstByte *byte, hdrBytes [
 	if len(sample) != 16 {
 		panic("invalid sample size")
 	}
-	for i := 0; i < 5; i++ {
+	for i := range 5 {
 		p.mask[i] = 0
 	}
 	cipher, err := chacha20.NewUnauthenticatedCipher(p.key[:], sample[4:])

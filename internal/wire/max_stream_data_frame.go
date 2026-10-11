@@ -1,8 +1,8 @@
 package wire
 
 import (
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/quicvarint"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/quicvarint"
 )
 
 // A MaxStreamDataFrame is a MAX_STREAM_DATA frame

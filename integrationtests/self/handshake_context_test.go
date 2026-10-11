@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go"
-	"github.com/AeonDave/mp-quic-go/qlogwriter"
+	quic "github.com/qoke/mp-quic-go"
+	"github.com/qoke/mp-quic-go/qlogwriter"
 
 	"github.com/stretchr/testify/require"
 )

@@ -1,7 +1,7 @@
 package ackhandler
 
 import (
-	"github.com/AeonDave/mp-quic-go/internal/wire"
+	"github.com/qoke/mp-quic-go/internal/wire"
 )
 
 // FrameHandler handles the acknowledgement and the loss of a frame.

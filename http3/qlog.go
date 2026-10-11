@@ -1,9 +1,9 @@
 package http3
 
 import (
-	"github.com/AeonDave/mp-quic-go"
-	"github.com/AeonDave/mp-quic-go/http3/qlog"
-	"github.com/AeonDave/mp-quic-go/qlogwriter"
+	quic "github.com/qoke/mp-quic-go"
+	"github.com/qoke/mp-quic-go/http3/qlog"
+	"github.com/qoke/mp-quic-go/qlogwriter"
 
 	"github.com/quic-go/qpack"
 )

@@ -1,12 +1,13 @@
 package qtls
 
 import (
+	"crypto/fips140"
 	"crypto/tls"
 	"fmt"
 	"net"
 	"testing"
 
-	"github.com/AeonDave/mp-quic-go/internal/testdata"
+	"github.com/qoke/mp-quic-go/internal/testdata"
 
 	"github.com/stretchr/testify/require"
 )
@@ -18,6 +19,10 @@ func TestCipherSuiteSelection(t *testing.T) {
 }
 
 func testCipherSuiteSelection(t *testing.T, cs uint16) {
+	if fips140.Enabled() && cs == tls.TLS_CHACHA20_POLY1305_SHA256 {
+		t.Skip("ChaCha20-Poly1305 is not allowed in FIPS 140-3 mode")
+	}
+
 	reset := SetCipherSuite(cs)
 	defer reset()
 

@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/internal/utils"
-	"github.com/AeonDave/mp-quic-go/quicvarint"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/utils"
+	"github.com/qoke/mp-quic-go/quicvarint"
 )
 
 // ErrInvalidReservedBits is returned when the reserved bits are incorrect.

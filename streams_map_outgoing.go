@@ -6,9 +6,9 @@ import (
 	"slices"
 	"sync"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/internal/qerr"
-	"github.com/AeonDave/mp-quic-go/internal/wire"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/qerr"
+	"github.com/qoke/mp-quic-go/internal/wire"
 )
 
 type outgoingStream interface {
@@ -114,6 +114,13 @@ func (m *outgoingStreamsMap[T]) OpenStreamSync(ctx context.Context) (T, error) {
 		m.mutex.Lock()
 		if m.closeErr != nil {
 			return *new(T), m.closeErr
+		}
+		if err := ctx.Err(); err != nil {
+			m.openQueue = slices.DeleteFunc(m.openQueue, func(c chan struct{}) bool {
+				return c == waitChan
+			})
+			m.maybeUnblockOpenSync()
+			return *new(T), err
 		}
 		if m.nextStream > m.maxStream {
 			// no stream available. Continue waiting

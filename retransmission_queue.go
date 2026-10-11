@@ -3,10 +3,10 @@ package quic
 import (
 	"fmt"
 
-	"github.com/AeonDave/mp-quic-go/internal/ackhandler"
+	"github.com/qoke/mp-quic-go/internal/ackhandler"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/internal/wire"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/wire"
 )
 
 type framesToRetransmit struct {

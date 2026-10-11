@@ -3,7 +3,7 @@ package congestion
 import (
 	"time"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/protocol"
 )
 
 // Bandwidth of a connection

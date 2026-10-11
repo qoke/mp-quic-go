@@ -10,9 +10,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go/internal/monotime"
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/internal/utils"
+	"github.com/qoke/mp-quic-go/internal/monotime"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/utils"
 )
 
 type connCapabilities struct {
@@ -41,7 +41,8 @@ type rawConn interface {
 
 // OOBCapablePacketConn is a connection that allows the reading of ECN bits from the IP header.
 // If the PacketConn passed to the [Transport] satisfies this interface, quic-go will use it.
-// In this case, ReadMsgUDP() will be used instead of ReadFrom() to read packets.
+// In this case, packets will be read in batches, and [OOBCapablePacketConn.WriteMsgUDP]
+// will be used instead of [net.PacketConn.WriteTo] to write packets.
 type OOBCapablePacketConn interface {
 	net.PacketConn
 	SyscallConn() (syscall.RawConn, error)
@@ -59,7 +60,7 @@ func wrapConn(pc net.PacketConn) (rawConn, error) {
 				if disable, _ := strconv.ParseBool(os.Getenv("QUIC_GO_DISABLE_RECEIVE_BUFFER_WARNING")); disable {
 					return
 				}
-				log.Printf("%s. See https://github.com/AeonDave/mp-quic-go/wiki/UDP-Buffer-Sizes for details.", err)
+				log.Printf("%s. See https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes for details.", err)
 			})
 		}
 	}
@@ -69,7 +70,7 @@ func wrapConn(pc net.PacketConn) (rawConn, error) {
 				if disable, _ := strconv.ParseBool(os.Getenv("QUIC_GO_DISABLE_RECEIVE_BUFFER_WARNING")); disable {
 					return
 				}
-				log.Printf("%s. See https://github.com/AeonDave/mp-quic-go/wiki/UDP-Buffer-Sizes for details.", err)
+				log.Printf("%s. See https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes for details.", err)
 			})
 		}
 	}

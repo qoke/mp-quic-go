@@ -1,6 +1,6 @@
 package wire
 
-import "github.com/AeonDave/mp-quic-go/internal/protocol"
+import "github.com/qoke/mp-quic-go/internal/protocol"
 
 // AckRange is an ACK range
 type AckRange struct {

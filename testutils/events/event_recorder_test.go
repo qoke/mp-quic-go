@@ -2,11 +2,11 @@ package events
 
 import (
 	"testing"
+	"testing/synctest"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go/internal/synctest"
-	"github.com/AeonDave/mp-quic-go/qlog"
-	"github.com/AeonDave/mp-quic-go/qlogwriter"
+	"github.com/qoke/mp-quic-go/qlog"
+	"github.com/qoke/mp-quic-go/qlogwriter"
 	"github.com/stretchr/testify/require"
 )
 

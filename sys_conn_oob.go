@@ -18,9 +18,9 @@ import (
 	"golang.org/x/net/ipv6"
 	"golang.org/x/sys/unix"
 
-	"github.com/AeonDave/mp-quic-go/internal/monotime"
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/internal/utils"
+	"github.com/qoke/mp-quic-go/internal/monotime"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/utils"
 )
 
 const (
@@ -35,28 +35,6 @@ var _ ipv4.Message = ipv6.Message{}
 
 type batchConn interface {
 	ReadBatch(ms []ipv4.Message, flags int) (int, error)
-}
-
-func inspectReadBuffer(c syscall.RawConn) (int, error) {
-	var size int
-	var serr error
-	if err := c.Control(func(fd uintptr) {
-		size, serr = unix.GetsockoptInt(int(fd), unix.SOL_SOCKET, unix.SO_RCVBUF)
-	}); err != nil {
-		return 0, err
-	}
-	return size, serr
-}
-
-func inspectWriteBuffer(c syscall.RawConn) (int, error) {
-	var size int
-	var serr error
-	if err := c.Control(func(fd uintptr) {
-		size, serr = unix.GetsockoptInt(int(fd), unix.SOL_SOCKET, unix.SO_SNDBUF)
-	}); err != nil {
-		return 0, err
-	}
-	return size, serr
 }
 
 func isECNDisabledUsingEnv() bool {
@@ -132,6 +110,9 @@ func newConn(c OOBCapablePacketConn, supportsDF bool) (*oobConn, error) {
 	if ibc, ok := c.(batchConn); ok {
 		bc = ibc
 	} else {
+		if _, ok := c.(net.Conn); !ok {
+			return nil, errors.New("quic: OOBCapablePacketConn must implement net.Conn or ReadBatch")
+		}
 		bc = ipv4.NewPacketConn(c)
 	}
 
@@ -151,7 +132,7 @@ func newConn(c OOBCapablePacketConn, supportsDF bool) (*oobConn, error) {
 			ECN: isECNEnabled(),
 		},
 	}
-	for i := 0; i < batchSize; i++ {
+	for i := range batchSize {
 		oobConn.messages[i].OOB = make([]byte, oobBufferSize)
 	}
 	return oobConn, nil

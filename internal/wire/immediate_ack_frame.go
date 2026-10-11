@@ -1,8 +1,8 @@
 package wire
 
 import (
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/quicvarint"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/quicvarint"
 )
 
 // An ImmediateAckFrame is an IMMEDIATE_ACK frame

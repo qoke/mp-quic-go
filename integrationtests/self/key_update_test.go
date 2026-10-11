@@ -6,12 +6,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go"
-	"github.com/AeonDave/mp-quic-go/internal/handshake"
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/qlog"
-	"github.com/AeonDave/mp-quic-go/qlogwriter"
-	"github.com/AeonDave/mp-quic-go/testutils/events"
+	quic "github.com/qoke/mp-quic-go"
+	"github.com/qoke/mp-quic-go/internal/handshake"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/qlog"
+	"github.com/qoke/mp-quic-go/qlogwriter"
+	"github.com/qoke/mp-quic-go/testutils/events"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

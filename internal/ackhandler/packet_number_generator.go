@@ -1,8 +1,8 @@
 package ackhandler
 
 import (
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/internal/utils"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/utils"
 )
 
 type packetNumberGenerator interface {

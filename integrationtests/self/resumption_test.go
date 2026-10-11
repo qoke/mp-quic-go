@@ -5,11 +5,11 @@ import (
 	"crypto/tls"
 	"net"
 	"testing"
+	"testing/synctest"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go"
-	"github.com/AeonDave/mp-quic-go/internal/synctest"
-	"github.com/AeonDave/mp-quic-go/testutils/simnet"
+	quic "github.com/qoke/mp-quic-go"
+	"github.com/qoke/mp-quic-go/testutils/simnet"
 
 	"github.com/stretchr/testify/require"
 )

@@ -7,13 +7,13 @@ import (
 	"math/rand/v2"
 	"net"
 	"testing"
+	"testing/synctest"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go"
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/internal/synctest"
-	"github.com/AeonDave/mp-quic-go/qlogwriter"
-	"github.com/AeonDave/mp-quic-go/testutils/simnet"
+	quic "github.com/qoke/mp-quic-go"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/qlogwriter"
+	"github.com/qoke/mp-quic-go/testutils/simnet"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

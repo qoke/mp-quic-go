@@ -8,11 +8,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go"
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/qlog"
-	"github.com/AeonDave/mp-quic-go/qlogwriter"
-	"github.com/AeonDave/mp-quic-go/testutils/events"
+	quic "github.com/qoke/mp-quic-go"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/qlog"
+	"github.com/qoke/mp-quic-go/qlogwriter"
+	"github.com/qoke/mp-quic-go/testutils/events"
 
 	"github.com/stretchr/testify/require"
 )
@@ -185,8 +185,8 @@ func TestServerDisablesVersionNegotiation(t *testing.T) {
 		}),
 	)
 	require.Error(t, err)
-	var nerr net.Error
-	require.True(t, errors.As(err, &nerr))
+	nerr, ok := errors.AsType[net.Error](err)
+	require.True(t, ok)
 	require.True(t, nerr.Timeout())
 	require.Empty(t, clientEventTracer.Events(qlog.VersionNegotiationReceived{}))
 }

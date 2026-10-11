@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go"
-	quicproxy "github.com/AeonDave/mp-quic-go/integrationtests/tools/proxy"
+	quic "github.com/qoke/mp-quic-go"
+	quicproxy "github.com/qoke/mp-quic-go/integrationtests/tools/proxy"
 
 	"github.com/stretchr/testify/require"
 )

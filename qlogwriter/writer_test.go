@@ -8,10 +8,10 @@ import (
 	"log"
 	"os"
 	"testing"
+	"testing/synctest"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go/internal/synctest"
-	"github.com/AeonDave/mp-quic-go/qlogwriter/jsontext"
+	"github.com/qoke/mp-quic-go/qlogwriter/jsontext"
 
 	"github.com/stretchr/testify/require"
 )

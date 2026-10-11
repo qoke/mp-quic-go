@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/internal/utils"
-	"github.com/AeonDave/mp-quic-go/internal/wire"
-	"github.com/AeonDave/mp-quic-go/qlogwriter"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/utils"
+	"github.com/qoke/mp-quic-go/internal/wire"
+	"github.com/qoke/mp-quic-go/qlogwriter"
 )
 
 type nopWriteCloserImpl struct{ io.Writer }

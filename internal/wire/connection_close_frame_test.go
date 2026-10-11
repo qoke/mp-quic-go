@@ -4,7 +4,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/protocol"
 
 	"github.com/stretchr/testify/require"
 )
@@ -42,7 +42,7 @@ func TestParseConnectionCloseLongReasonPhrase(t *testing.T) {
 	data = append(data, encodeVarInt(0x42)...)   // frame type
 	data = append(data, encodeVarInt(0xffff)...) // reason phrase length
 	_, _, err := parseConnectionCloseFrame(data, FrameTypeConnectionClose, protocol.Version1)
-	require.Equal(t, io.EOF, err)
+	require.ErrorIs(t, err, io.EOF)
 }
 
 func TestParseConnectionCloseErrorsOnEOFs(t *testing.T) {
@@ -56,7 +56,7 @@ func TestParseConnectionCloseErrorsOnEOFs(t *testing.T) {
 	require.NoError(t, err)
 	for i := range data {
 		_, _, err = parseConnectionCloseFrame(data[:i], FrameTypeConnectionClose, protocol.Version1)
-		require.Equal(t, io.EOF, err)
+		require.ErrorIs(t, err, io.EOF)
 	}
 }
 

@@ -3,8 +3,8 @@ package wire
 import (
 	"fmt"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/quicvarint"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/quicvarint"
 )
 
 // A StreamsBlockedFrame is a STREAMS_BLOCKED frame

@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AeonDave/mp-quic-go/http3"
+	"github.com/qoke/mp-quic-go/http3"
 	"github.com/stretchr/testify/require"
 )
 
@@ -119,7 +119,7 @@ func TestHTTPClientTrace(t *testing.T) {
 		case "TLSHandshakeDone":
 			require.Nil(t, e.Args.(map[string]any)["err"])
 			state := e.Args.(map[string]any)["state"].(tls.ConnectionState)
-			require.Equal(t, 1, len(state.PeerCertificates))
+			require.Len(t, state.PeerCertificates, 1)
 			require.Equal(t, "localhost", state.PeerCertificates[0].DNSNames[0])
 		case "WroteHeaderField":
 			require.Equal(t, fmt.Sprintf("localhost:%d", port), e.Args.(string))

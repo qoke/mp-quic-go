@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/qlogwriter"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/qlogwriter"
 	"github.com/stretchr/testify/require"
 )
 
@@ -38,9 +38,7 @@ func testQLOGDIRSet(t *testing.T, qlogDir string, tracer qlogwriter.Trace, expec
 	recorder := tracer.AddProducer()
 	recorder.Close()
 
-	_, err := os.Stat(qlogDir)
-	qlogDirCreated := !os.IsNotExist(err)
-	require.True(t, qlogDirCreated)
+	require.DirExists(t, qlogDir)
 
 	entries, err := os.ReadDir(qlogDir)
 	require.NoError(t, err)

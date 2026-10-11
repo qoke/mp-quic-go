@@ -6,7 +6,7 @@ import (
 	"net"
 	"testing"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/protocol"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -65,9 +65,9 @@ var _ error = myError(0)
 func (e myError) Error() string { return fmt.Sprintf("my error %d", e) }
 
 func TestCryptoError(t *testing.T) {
-	var myErr myError
 	err := NewLocalCryptoError(0x42, myError(1337))
-	require.True(t, errors.As(err, &myErr))
+	myErr, ok := errors.AsType[myError](err)
+	require.True(t, ok)
 	require.Equal(t, myError(1337), myErr)
 
 	err = NewLocalCryptoError(0x42, assert.AnError)

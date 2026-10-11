@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/internal/qerr"
-	"github.com/AeonDave/mp-quic-go/internal/wire"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/qerr"
+	"github.com/qoke/mp-quic-go/internal/wire"
 )
 
 type incomingStream interface {
@@ -150,6 +150,17 @@ func (m *incomingStreamsMap[T]) GetOrOpenStream(id protocol.StreamID) (T, error)
 	entry := m.streams[id]
 	m.mutex.Unlock()
 	return entry.stream, nil
+}
+
+// getExistingStream returns a stream that the peer opened,
+// or the zero value if the stream wasn't opened, or was already deleted.
+func (m *incomingStreamsMap[T]) getExistingStream(id protocol.StreamID) T {
+	m.mutex.RLock()
+	defer m.mutex.RUnlock()
+	if entry, ok := m.streams[id]; ok && !entry.shouldDelete {
+		return entry.stream
+	}
+	return *new(T)
 }
 
 func (m *incomingStreamsMap[T]) DeleteStream(id protocol.StreamID) error {

@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
-	"github.com/AeonDave/mp-quic-go/quicvarint"
+	"github.com/qoke/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/quicvarint"
 
 	"github.com/stretchr/testify/require"
 )

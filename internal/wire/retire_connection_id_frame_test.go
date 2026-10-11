@@ -4,7 +4,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/AeonDave/mp-quic-go/internal/protocol"
+	"github.com/qoke/mp-quic-go/internal/protocol"
 
 	"github.com/stretchr/testify/require"
 )
@@ -24,7 +24,7 @@ func TestParseRetireConnectionIDErrorsOnEOFs(t *testing.T) {
 	require.Equal(t, len(data), l)
 	for i := range data {
 		_, _, err := parseRetireConnectionIDFrame(data[:i], protocol.Version1)
-		require.Equal(t, io.EOF, err)
+		require.ErrorIs(t, err, io.EOF)
 	}
 }
 

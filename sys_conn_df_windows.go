@@ -8,7 +8,7 @@ import (
 
 	"golang.org/x/sys/windows"
 
-	"github.com/AeonDave/mp-quic-go/internal/utils"
+	"github.com/qoke/mp-quic-go/internal/utils"
 )
 
 const (

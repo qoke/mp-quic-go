@@ -3,10 +3,10 @@ package quic
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 
-	"github.com/AeonDave/mp-quic-go/internal/synctest"
-	"github.com/AeonDave/mp-quic-go/internal/utils"
-	"github.com/AeonDave/mp-quic-go/internal/wire"
+	"github.com/qoke/mp-quic-go/internal/utils"
+	"github.com/qoke/mp-quic-go/internal/wire"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
